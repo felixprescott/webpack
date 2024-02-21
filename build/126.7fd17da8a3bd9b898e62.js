@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkwebpack_project=self.webpackChunkwebpack_project||[]).push([[126],{126:(e,c,p)=>{p.r(c),p.d(c,{default:()=>t});var r=p(893);const t=function(){return(0,r.jsx)("h1",{children:"Shop"})}}}]);

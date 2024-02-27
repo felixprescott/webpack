@@ -1,14 +1,23 @@
 import {useState} from 'react';
 import classes from './App.module.scss';
 import { Link, Outlet } from 'react-router-dom';
-import sampleJpg from '@/assets/sample.jpg';
 import samplePng from '@/assets/sample.png';
 import SampleSVG from '@/assets/sample.svg';
 
 export const App = () => {
     const [counter, setCounter] = useState(0);
+
+    const TODO = () => {
+      console.log('TODO 1');
+      TODO2();
+    }
+
+    const TODO2 = () => {
+      console.log('TODO 2');
+      throw new Error('oops');
+    }
     return (
-      <div>
+      <div data-testid={'App.TestId-1'} >
         <div>PLATFORM: {__PLATFORM__}</div>
         <div>{__PLATFORM__ === 'desktop' && (
           '123213123'
@@ -18,7 +27,6 @@ export const App = () => {
         )}</div>
         <div>
           <img src={samplePng} alt="" height={'100px'}/>
-          <img src={sampleJpg} alt="" height={'100px'}/>
         </div>
         <div>
           <SampleSVG width={100} height={100}/>
@@ -29,7 +37,7 @@ export const App = () => {
         <br/>
         <Link to={'/shop'}>shop</Link>
         <h1>{counter}</h1>
-        <button className={classes.button} onClick={() => setCounter((prev) => prev + 1)}><h1>+1</h1></button>
+        <button className={classes.button} onClick={() => {setCounter((prev) => prev + 1); TODO();}}><h1>+1</h1></button>
         <Outlet/>
       </div>
     );

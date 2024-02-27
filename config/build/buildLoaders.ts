@@ -2,6 +2,7 @@ import {ModuleOptions} from 'webpack';
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import {BuildOptions} from "./types/types";
 import ReactRefreshTypeScript from 'react-refresh-typescript';
+import { buildBabelLoader } from './babel/buildBabelLoader';
 
 export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
   const isDev = options.mode === 'development';
@@ -33,7 +34,7 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
       ],
     }
 
-  const tsLoader = {
+  /* const tsLoader = {
     test: /\.tsx?$/,
     loader: 'ts-loader',
     exclude: /node_modules/,
@@ -43,12 +44,15 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
       }),
       transpileOnly: isDev
     }
-  };
+  }; */
+
+  const babelLoader = buildBabelLoader(options);
 
   return [
     svgrLoader,
     assetLoader,
     scssLoader,
-    tsLoader,
+    // tsLoader,
+    babelLoader,
   ]
 }
